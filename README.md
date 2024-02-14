@@ -9,3 +9,7 @@ Simple Python SQLite explorer with tables
 ```bash
 apt update && apt upgrade && apt install git python && git clone https://github.com/kararasenok-gd/sqlite-explorer && cd sqlite-explorer && chmod +x install.sh && ./install.sh
 ```
+if updated and everything is installed:
+```bash
+git clone https://github.com/kararasenok-gd/sqlite-explorer && cd sqlite-explorer && chmod +x install.sh && ./install.sh
+```
