@@ -1,4 +1,5 @@
 import sqlite3
+from time import sleep
 from prettytable import PrettyTable
 import os
 import json
@@ -34,8 +35,28 @@ def print_table_data(cursor, table_name):
     except Exception as e:
         input(str(e) + "\nPress ENTER")
 
+class TerminalColors:
+    # ANSI escape codes for text colors
+    RED = '\033[91m'
+    GREEN = '\033[92m'
+    YELLOW = '\033[93m'
+    BLUE = '\033[94m'
+    RESET = '\033[0m'
+
+def print_colored_text(text, color):
+    print(f"{color}{text}{TerminalColors.RESET}")
+
+
+def check_db(db_name):
+    if db_name is not None and os.path.isfile(db_name):
+        return db_name
+    else:
+        raise FileNotFoundError("Error! You have not selected any database or the database does not exist.")
+
+
 def main():
-    conn = sqlite3.connect(input("Path to .db file: "))
+    checkd_db = check_db(input("Path to .db file: "))
+    conn = sqlite3.connect(checkd_db)
     cursor = conn.cursor()
 
     while True:
@@ -142,11 +163,12 @@ def main():
             continue
 
 
-
-
-
+        if table_name.lower() == "":
+            print_colored_text("Error! You have not selected more than one table", TerminalColors.RED)
+            sleep(0.7)
+        else:
+            print_table_data(cursor, table_name)
         
-        print_table_data(cursor, table_name)
 
     conn.close()
 
