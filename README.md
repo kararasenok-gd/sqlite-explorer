@@ -24,3 +24,4 @@ git clone https://github.com/kararasenok-gd/sqlite-explorer && cd sqlite-explore
 ## Authors
 
 - [@kararasenok-gd](https://www.github.com/kararasenok-gd)
+- [@KailUser](https://github.com/KailUser)
