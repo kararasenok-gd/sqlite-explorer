@@ -69,7 +69,7 @@ def main():
             break
         if table_name.lower() == '>help':
             cls()
-            print(">help - This Command\n>create <table|column|row> - Create something\n>delete <table|row> - Delete something\n>edit row - Edit row")
+            print(">help - This Command\n>create <table|column|row> - Create something\n>delete <table|row> - Delete something\n>edit row - Edit row\n>sql - Run own sql query")
             input("Press ENTER")
             continue
         if table_name.lower() == ">create table":
@@ -161,7 +161,16 @@ def main():
             cursor.execute(f"UPDATE {table} SET {column} = {new_value} WHERE {column} = {value}")
             conn.commit()
             continue
-
+        
+        
+        if table_name.lower() == ">sql":
+            sql_query = input("Your sql query: ")
+            cursor.execute(sql_query)
+            conn.commit()
+            for result in cursor.fetchall():
+                print(result)
+            input("Press ENTER")
+            continue
 
         if table_name.lower() == "":
             print_colored_text("Error! You have not selected more than one table", TerminalColors.RED)
